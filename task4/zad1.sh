@@ -1,17 +1,10 @@
 #!/bin/bash
 
 num_processes=10
-pids=()
-for ((i=0; i < num_processes; i++))
+for ((i=1; i <= num_processes; i++))
 do
-    sleep 10 &  
-    pids+=($!)  
+    sleep 100 &
+    echo $i > proven_processes.txt
 done
 
-for pid in ${pids[@]}
-do
-    wait $pid
-done
-
-echo ${#pids[@]} > proven_processes.txt
 sleep 3600
